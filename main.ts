@@ -4,16 +4,32 @@ namespace OLED_3D {
     let cameraPos: number[] = [0, 0, 0]
     let cameraRotation: number[] = [0, 0, 0]
     export class Cube {
-        x: number
-        y: number
-        z: number
-        constructor(_x: number, _y: number, _z: number) {
+        public x: number
+        public y: number
+        public z: number
+        public size: number
+        constructor(_x: number, _y: number, _z: number, _size: number) {
             this.x = _x
             this.y = _y
             this.z = _z
+            this.size = _size
         }
-        
-        public draw(): void {}
+
+        public draw(): void {
+            const a: number[][][] = [
+                [[50, 50], [50, 100]],
+                [[50,50], [100,50]],
+                [[50,100], [100,100]],
+                [[100,50], [100,100]], 
+                [[60,60], [60,90]], 
+                [[60,60], [90,60]], 
+                [[90,60], [90,90]], 
+                [[60,90], [90,90]],
+            ]
+            for (let i of a) {
+                OLED.drawLine(i[0][0], i[0][1], i[1][0], i[1][1], true)
+            }
+        }
     }
     //% block="initalize OLED display"
     //% block.loc.cs="inicializovat OLED display"
@@ -26,13 +42,21 @@ namespace OLED_3D {
     //% block.loc.cs="vykreslit"
     //% weight=99
     export function draw(): void {
+        for (let i of objects) {
+            i.draw()
+        }
         OLED.draw()
     }
-    //% block="add cube|x $x|y $y|z $z"
-    //% block.loc.cs="přidat krychli|x $x|y $y|z $z"
+    //% block="cube|x $x|y $y|z $z|size $size"
+    //% block.loc.cs="krychle|x $x|y $y|z $z|velikost $size"
+    //% x.defl=0
+    //% y.delf=0
+    //% z.delf=0
+    //% size.delf=1
     //% inlineInputMode=external
     //% weight=98
-    export function addCube(x: number, y: number, z: number): void {
-        objects.push(new Cube(x, y, z))
+    export function addCube(x: number, y: number, z: number, size: number): Cube {
+        objects.push(new Cube(x, y, z, size))
+        return new Cube(x, y, z, size)
     }
 }
