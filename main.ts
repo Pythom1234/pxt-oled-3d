@@ -18,7 +18,7 @@ namespace OLED_3D {
         OLED.draw()
     }
     //% block="add cube|x $x|y $y|z $z"
-    //% block.loc.cs="add cube|x $x|y $y|z $z"
+    //% block.loc.cs="přidat krychli|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=99
     export function addCube(x: number, y: number, z: number) {
