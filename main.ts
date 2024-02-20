@@ -2,18 +2,26 @@
 namespace OLED_3D {
     let objects: any[] = []
     export class Cube {
-        constructor(x: number, y: number, z: number) {}
+        constructor(x: number, y: number, z: number) { }
     }
     //% block="initalize OLED display"
     //% block.loc.cs="inicializovat OLED display"
     //% weight=100
     export function init() {
         OLED.init()
+        OLED.clear(false)
     }
-    //% block="initalize OLED display"
-    //% block.loc.cs="inicializovat OLED display"
+    //% block="draw"
+    //% block.loc.cs="vykreslit"
     //% weight=99
-    export function addCube() {
-        objects.push(new Cube(0,0,0))
+    export function draw() {
+        OLED.draw()
+    }
+    //% block="add cube|x $x|y $y|z $z"
+    //% block.loc.cs="add cube|x $x|y $y|z $z"
+    //% inlineInputMode=external
+    //% weight=99
+    export function addCube(x: number, y: number, z: number) {
+        objects.push(new Cube(x, y, z))
     }
 }
