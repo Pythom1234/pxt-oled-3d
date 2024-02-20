@@ -1,4 +1,4 @@
-//% block="OLED 3D" icon="\uf1b2" color=#00ff00
+//% block="OLED 3D" icon="\uf1b2" color=#0000ff
 namespace OLED_3D {
     //% block
     export function a() {}
