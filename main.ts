@@ -2,7 +2,14 @@
 namespace OLED_3D {
     let objects: any[] = []
     export class Cube {
-        constructor(x: number, y: number, z: number) { }
+        x: number
+        y: number
+        z: number
+        constructor(_x: number, _y: number, _z: number) {
+            this.x = _x
+            this.y = _y
+            this.z = _z
+        }
     }
     //% block="initalize OLED display"
     //% block.loc.cs="inicializovat OLED display"
