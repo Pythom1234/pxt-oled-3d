@@ -27,7 +27,7 @@ namespace OLED_3D {
     //% block="add cube|x $x|y $y|z $z"
     //% block.loc.cs="přidat krychli|x $x|y $y|z $z"
     //% inlineInputMode=external
-    //% weight=99
+    //% weight=98
     export function addCube(x: number, y: number, z: number) {
         objects.push(new Cube(x, y, z))
     }
