@@ -1,7 +1,7 @@
 
 //% block="OLED 3D" icon="\uf1b2" color=#0000ff
 namespace OLED_3D {
-    let objects: any[] = []
+    let objects: Cube[] = []
     let cameraPos = [0, 0, 0]
     let cameraRotation = [0, 90, 0]
     export class Cube {
