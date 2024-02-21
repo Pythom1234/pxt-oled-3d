@@ -1,4 +1,14 @@
-
+function projectLines(vertices: number[][][]): number[][][] {
+    let result: number[][][] = []
+    for (let vertex of vertices) {
+        let v: number[][] = []
+        for (let point of vertex) {
+            
+        }
+        result.push(v)
+    }
+    return result
+}
 //% block="OLED 3D" icon="\uf1b2" color=#0000ff
 namespace OLED_3D {
     let objects: Cube[] = []
@@ -17,7 +27,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = 
+            let lines = projectLines([[[-1, -1, -1], [1, 1, 1]]])
             for (let line of lines) {
                 OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
             }
