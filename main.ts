@@ -61,7 +61,7 @@ namespace useful {
 namespace OLED_3D {
     let objects: any[] = []
     let cameraPos = [0, 0, 0]
-    let cameraRotation = [0, 0, 0]
+    let cameraRotation = [0, 90, 0]
     export class Cube {
         public x: number
         public y: number
