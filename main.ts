@@ -46,8 +46,8 @@ namespace useful {
         return [screenX, screenY];
     }
 
-    function createLines(vertices: Vertex[], camera: Camera): Line[] {
-        const lines: Line[] = [];
+    function createLines(vertices: Vertex[], camera: Camera): number[][][] {
+        const lines: number[][][] = [];
 
         for (let i = 0; i < vertices.length; i++) {
             for (let j = i + 1; j < vertices.length; j++) {
