@@ -1,12 +1,8 @@
 namespace useful {
     type Vertex = [number, number, number];
-    type Line = [Vertex, Vertex];
+    type Line = [[number,number], [number, number]];
 
-    // Definice typu pro kameru
-    type Camera = {
-        position: Vertex;
-        rotation: Vertex; // Natočení kamery ve formě [pitch, yaw, roll]
-    };
+    type Camera = number[][];
 
     function rotateX(vertex: Vertex, angle: number): Vertex {
         const [x, y, z] = vertex;
@@ -31,13 +27,13 @@ namespace useful {
 
     function project(vertex: Vertex, camera: Camera): [number, number] {
         const [x, y, z] = [
-            vertex[0] - camera.position[0],
-            vertex[1] - camera.position[1],
-            vertex[2] - camera.position[2],
+            vertex[0] - camera[0][0],
+            vertex[1] - camera[0][1],
+            vertex[2] - camera[0][2],
         ];
 
         // Natočení souřadnic podle natočení kamery
-        const rotatedX = rotateX(rotateY(rotateZ([x, y, z], camera.rotation[2]), camera.rotation[1]), camera.rotation[0]);
+        const rotatedX = rotateX(rotateY(rotateZ([x, y, z], camera[1][2]), camera[1][1]), camera[1][0]);
         // Projekce na rovinu XZ (ignoruje třetí souřadnici)
         const scaleFactor = 10; // Měřítko pro změnu velikosti výsledného obrazu
         const screenX = rotatedX[0] * scaleFactor + 64;
@@ -46,8 +42,8 @@ namespace useful {
         return [screenX, screenY];
     }
 
-    function createLines(vertices: Vertex[], camera: Camera): number[][][] {
-        const lines: number[][][] = [];
+    export function createLines(vertices: Vertex[], camera: Camera): Line[] {
+        const lines: Line[] = [];
 
         for (let i = 0; i < vertices.length; i++) {
             for (let j = i + 1; j < vertices.length; j++) {
@@ -64,8 +60,8 @@ namespace useful {
 //% block="OLED 3D" icon="\uf1b2" color=#0000ff
 namespace OLED_3D {
     let objects: any[] = []
-    let cameraPos: number[] = [0, 0, 0]
-    let cameraRotation: number[] = [0, 0, 0]
+    let cameraPos = [0, 0, 0]
+    let cameraRotation = [0, 0, 0]
     export class Cube {
         public x: number
         public y: number
@@ -83,7 +79,7 @@ namespace OLED_3D {
     }
     function drawVertices(vertices: number[][][]) {
         for (let tuple of vertices) {
-            
+            useful.createLines([[0,0,0],[1,1,1]],[cameraPos,cameraRotation])
         }
     }
     //% block="initalize OLED display"
