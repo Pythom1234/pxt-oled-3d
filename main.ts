@@ -1,26 +1,22 @@
-function projectLines(vertices: number[][][]): number[][][] {
+function projectLines(vertices: number[][]): number[][] {
     function rotatePoint(x: number, y: number, angle: number): number[] {
-        const cos_theta = Math.cos(angle);
-        const sin_theta = Math.sin(angle);
-        const x_rotated = cos_theta * x - sin_theta * y;
-        const y_rotated = sin_theta * x + cos_theta * y;
-        return [x_rotated, y_rotated];
+        const cos_theta = Math.cos(angle)
+        const sin_theta = Math.sin(angle)
+        const x_rotated = cos_theta * x - sin_theta * y
+        const y_rotated = sin_theta * x + cos_theta * y
+        return [x_rotated, y_rotated]
     }
-
     function projectPoint(x: number, y: number, z: number, angle: number): number[] {
-        const rotated_point = rotatePoint(x, y, angle);
-        const f = 2;
-        const x_proj = rotated_point[0] / (z + f);
-        const y_proj = rotated_point[1] / (z + f);
-        return [x_proj, y_proj];
+        const rotated_point = rotatePoint(x, y, angle)
+        const f = 2
+        const x_proj = rotated_point[0] / (z + f)
+        const y_proj = rotated_point[1] / (z + f)
+        return [x_proj, y_proj]
     }
-    let result: number[][][] = []
-    for (let vertex of vertices) {
-        let v: number[][] = []
-        for (let point of vertex) {
-            v.push(projectPoint(point[0], point[1], point[2], 0))
-        }
-        result.push(v)
+    let result: number[][] = []
+    for (let point of vertices) {
+        let point2d = projectPoint(point[0], point[1], point[2], 0)
+        result.push(point2d)
     }
     return result
 }
@@ -42,10 +38,9 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectLines([[[-1, -1, -1], [1, 1, 1]]])
-            console.log(lines)
-            for (let line of lines) {
-                OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
+            let lines = projectLines([[0,0,0],[1,1,1]])
+            for (let i = 0; i < lines.length; i++) {
+                OLED.drawLine(lines[i][0], lines[i][1], lines[i+1][0], lines[i+1][1], true)
             }
         }
     }
