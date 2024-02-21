@@ -1,9 +1,24 @@
 function projectLines(vertices: number[][][]): number[][][] {
+    function rotatePoint(x: number, y: number, angle: number): number[] {
+        const cos_theta = Math.cos(angle);
+        const sin_theta = Math.sin(angle);
+        const x_rotated = cos_theta * x - sin_theta * y;
+        const y_rotated = sin_theta * x + cos_theta * y;
+        return [x_rotated, y_rotated];
+    }
+
+    function projectPoint(x: number, y: number, z: number, angle: number): number[] {
+        const rotated_point = rotatePoint(x, y, angle);
+        const f = 2;
+        const x_proj = rotated_point[0] / (z + f);
+        const y_proj = rotated_point[1] / (z + f);
+        return [x_proj, y_proj];
+    }
     let result: number[][][] = []
     for (let vertex of vertices) {
         let v: number[][] = []
         for (let point of vertex) {
-            
+            v.push(projectPoint(point[0], point[1], point[2], 0))
         }
         result.push(v)
     }
