@@ -17,7 +17,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = useful.createLines([[0, 0, 0], [1, 1, 1]], [cameraPos, cameraRotation])
+            let lines = [[[10,10],[30,30]]]
             console.log(lines)
             for (let line of lines) {
                 OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
@@ -55,60 +55,3 @@ namespace OLED_3D {
     }
 }
 
-
-namespace useful {
-    type Vertex = [number, number, number];
-    type Line = [[number, number], [number, number]];
-
-    type Camera = number[][];
-
-    function rotateX(vertex: Vertex, angle: number): Vertex {
-        const [x, y, z] = vertex;
-        const rotatedY = y * Math.cos(angle) - z * Math.sin(angle);
-        const rotatedZ = y * Math.sin(angle) + z * Math.cos(angle);
-        return [x, rotatedY, rotatedZ];
-    }
-
-    function rotateY(vertex: Vertex, angle: number): Vertex {
-        const [x, y, z] = vertex;
-        const rotatedX = x * Math.cos(angle) + z * Math.sin(angle);
-        const rotatedZ = -x * Math.sin(angle) + z * Math.cos(angle);
-        return [rotatedX, y, rotatedZ];
-    }
-
-    function rotateZ(vertex: Vertex, angle: number): Vertex {
-        const [x, y, z] = vertex;
-        const rotatedX = x * Math.cos(angle) - y * Math.sin(angle);
-        const rotatedY = x * Math.sin(angle) + y * Math.cos(angle);
-        return [rotatedX, rotatedY, z];
-    }
-
-    function project(vertex: Vertex, camera: Camera): [number, number] {
-        const [x, y, z] = [
-            vertex[0] - camera[0][0],
-            vertex[1] - camera[0][1],
-            vertex[2] - camera[0][2],
-        ];
-
-        const rotatedX = rotateX(rotateY(rotateZ([x, y, z], camera[1][2]), camera[1][1]), camera[1][0]);
-        const scaleFactor = 10;
-        const screenX = rotatedX[0] * scaleFactor + 64;
-        const screenY = rotatedX[1] * scaleFactor + 32;
-
-        return [screenX, screenY];
-    }
-
-    export function createLines(vertices: Vertex[], camera: Camera): Line[] {
-        const lines: Line[] = [];
-
-        for (let i = 0; i < vertices.length; i++) {
-            for (let j = i + 1; j < vertices.length; j++) {
-                const start = project(vertices[i], camera);
-                const end = project(vertices[j], camera);
-                lines.push([start, end]);
-            }
-        }
-
-        return lines;
-    }
-}
