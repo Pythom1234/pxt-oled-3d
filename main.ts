@@ -17,14 +17,12 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-        }
-    }
-    function drawVertices() {
-        let lines = useful.createLines([[0, 0, 0], [1, 1, 1]], [cameraPos, cameraRotation])
-        console.log(lines)
-        for (let line of lines) {
-            OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
-            console.log(line)
+            let lines = useful.createLines([[0, 0, 0], [1, 1, 1]], [cameraPos, cameraRotation])
+            console.log(lines)
+            for (let line of lines) {
+                OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
+                console.log(line)
+            }
         }
     }
     //% block="initalize OLED display"
