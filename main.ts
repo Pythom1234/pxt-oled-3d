@@ -43,6 +43,7 @@ namespace OLED_3D {
 
         public draw(): void {
             let lines = projectLines([[[-1, -1, -1], [1, 1, 1]]])
+            console.log(lines)
             for (let line of lines) {
                 OLED.drawLine(line[0][0], line[0][1], line[1][0], line[1][1], true)
             }
