@@ -40,42 +40,50 @@ namespace OLED_3D {
             this.y = _y
             this.z = _z
             this.size = _size
+            this.setup()
+        }
+
+        private setup(): void {
+            const s = this.size
+            const x = this.x
+            const y = this.y
+            const z = this.z
             this.vertices = [
-                [-1, -1, -1],
-                [1, -1, -1],
+                [-s + x, -s + y, -s + z],
+                [s + x, -s + y, -s + z],
 
-                [-1, -1, -1],
-                [-1, 1, -1],
+                [-s + x, -s + y, -s + z],
+                [-s + x, s + y, -s + z],
 
-                [1, -1, -1],
-                [1, 1, -1],
+                [s + x, -s + y, -s + z],
+                [s + x, s + y, -s + z],
 
-                [-1, 1, -1],
-                [1, 1, -1],
+                [-s + x, s + y, -s + z],
+                [s + x, s + y, -s + z],
 
-                [-1, -1, 1],
-                [1, -1, 1],
+                [-s + x, -s + y, s + z],
+                [s + x, -s + y, s + z],
 
-                [-1, -1, 1],
-                [-1, 1, 1],
+                [-s + x, -s + y, s + z],
+                [-s + x, s + y, s + z],
 
-                [1, -1, 1],
-                [1, 1, 1],
+                [s + x, -s + y, s + z],
+                [s + x, s + y, s + z],
 
-                [-1, 1, 1],
-                [1, 1, 1],
+                [-s + x, s + y, s + z],
+                [s + x, s + y, s + z],
 
-                [-1, -1, -1],
-                [-1, -1, 1],
+                [-s + x, -s + y, -s + z],
+                [-s + x, -s + y, s + z],
 
-                [-1, 1, -1],
-                [-1, 1, 1],
+                [-s + x, s + y, -s + z],
+                [-s + x, s + y, s + z],
 
-                [1, -1, -1],
-                [1, -1, 1],
+                [s + x, -s + y, -s + z],
+                [s + x, -s + y, s + z],
 
-                [1, 1, -1],
-                [1, 1, 1],
+                [s + x, s + y, -s + z],
+                [s + x, s + y, s + z],
 
             ]
         }
@@ -115,8 +123,9 @@ namespace OLED_3D {
     //% inlineInputMode=external
     //% weight=98
     export function addCube(x: number, y: number, z: number, size: number): Cube {
-        objects.push(new Cube(x, y, z, size))
-        return new Cube(x, y, z, size)
+        const cube = new Cube(x, y, z, size)
+        objects.push(cube)
+        return cube
     }
 }
 
