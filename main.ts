@@ -114,15 +114,16 @@ namespace OLED_3D {
         }
         OLED.draw()
     }
-    //% block="cube|x $x|y $y|z $z|size $size"
-    //% block.loc.cs="krychle|x $x|y $y|z $z|velikost $size"
+    //% block="cube|x $x|y $y|z $z|size $size||name $name"
+    //% block.loc.cs="krychle|x $x|y $y|z $z|velikost $size||jméno $name"
     //% x.defl=0
     //% y.delf=0
     //% z.delf=0
     //% size.delf=1
     //% inlineInputMode=external
+    //% expandableArgumentMode=enabled
     //% weight=98
-    export function addCube(x: number, y: number, z: number, size: number): Cube {
+    export function addCube(x: number, y: number, z: number, size: number, name?: string): Cube {
         const cube = new Cube(x, y, z, size)
         objects.push(cube)
         return cube
