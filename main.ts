@@ -31,28 +31,50 @@ namespace OLED_3D {
     let cameraRotation = [0, 90, 0]
     let maxId = 0
     export class Cube {
-        public x: number
-        public y: number
-        public z: number
+        public _x: number
+        public _y: number
+        public _z: number
         public size: number
         public vertices: number[][]
         public id: number
         public name: string
         constructor(_x: number, _y: number, _z: number, _size: number, _id: number, _name: string) {
-            this.x = _x
-            this.y = _y
-            this.z = _z
+            this._x = _x
+            this._y = _y
+            this._z = _z
             this.size = _size
             this.id = _id
             this.name = _name
             this.setup()
         }
 
+        set x(value: number) {
+            this._x = value
+            this.setup()
+        }
+        set y(value: number) {
+            this._x = value
+            this.setup()
+        }
+        set z(value: number) {
+            this._x = value
+            this.setup()
+        }
+        get x(): number {
+            return this._x
+        }
+        get y(): number {
+            return this._y
+        }
+        get z(): number {
+            return this._z
+        }
+
         private setup(): void {
             const s = this.size
-            const x = this.x
-            const y = this.y
-            const z = this.z
+            const x = this._x
+            const y = this._y
+            const z = this._z
             this.vertices = [
                 [-s + x, -s - y, -s + z],
                 [s + x, -s - y, -s + z],
@@ -129,7 +151,7 @@ namespace OLED_3D {
     //% expandableArgumentMode=enabled
     //% weight=98
     export function addCube(x: number, y: number, z: number, size: number, name?: string): Cube {
-        if (name) { } else { name = maxId.toString() }
+        if (name) { } else { name = "OBJECT" }
         const cube = new Cube(x, y, z, size, maxId, name)
         maxId += 1
         objects.push(cube)
@@ -139,6 +161,22 @@ namespace OLED_3D {
     //% block.loc.cs="pohnout objektem s ID $value na|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=97
-    export function moveObject(value: number, x: number, y: number, z: number): void {
+    export function moveObjectID(value: number, x: number, y: number, z: number): void {
+        objects[value].x = x
+        objects[value].y = y
+        objects[value].z = z
+    }
+    //% block="move object with name $value to|x $x|y $y|z $z"
+    //% block.loc.cs="pohnout objektem se jménem $value na|x $x|y $y|z $z"
+    //% inlineInputMode=external
+    //% weight=96
+    export function moveObjectName(value: string, x: number, y: number, z: number): void {
+        for (let i of objects) {
+            if (i.name == value) {
+                i.x = x
+                i.y = y
+                i.z = z
+            }
+        }
     }
 }
