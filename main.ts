@@ -141,11 +141,10 @@ namespace OLED_3D {
         objects.push(cube)
         return cube
     }
-    //% block="move object with $identifier $value to x $x y $y z $z"
-    //% block.loc.cs="pohnout objektem s $identifier $value na x $x y $y z $z"
+    //% block="move object with ID $value to x $x y $y z $z"
+    //% block.loc.cs="pohnout objektem s ID $value na x $x y $y z $z"
+    //% inlineInputMode=enabled
     //% weight=97
-    export function moveObject(identifier: Identifiers, value: string | number, x: number, y: number, z: number): void {
-        if (identifier == Identifiers.Id) {
-        }
+    export function moveObject(value: number, x: number, y: number, z: number): void {
     }
 }
