@@ -9,7 +9,7 @@ function projectLines(vertices: number[][]): number[][] {
     function projectPoint(x: number, y: number, z: number, angle: number): number[] {
         const rotated_point = rotatePoint(x, y, angle)
         const f = 5
-        const scale = 30
+        const scale = 60
         const x_proj = (rotated_point[0] / (z + f)) * scale
         const y_proj = (rotated_point[1] / (z + f)) * scale
         return [x_proj, y_proj]
