@@ -42,7 +42,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectLines([[0, 0, 0], [1, 1, 1]])
+            let lines = projectLines([[-1, -1, 0], [1, 1, 0]])
             console.log(lines[0])
             console.log(lines[1])
             console.log(lines.length)
