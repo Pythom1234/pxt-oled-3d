@@ -29,17 +29,28 @@ namespace OLED_3D {
     let objects: Cube[] = []
     let cameraPos = [0, 0, 0]
     let cameraRotation = [0, 90, 0]
+    let maxId = 0
+    export enum Identifiers {
+        //% block="ID" block.loc.cs="ID"
+        Id,
+        //% block="name" block.loc.cs="jménem"
+        Name
+    }
     export class Cube {
         public x: number
         public y: number
         public z: number
         public size: number
         public vertices: number[][]
-        constructor(_x: number, _y: number, _z: number, _size: number) {
+        public id: number
+        public name: string
+        constructor(_x: number, _y: number, _z: number, _size: number, _id: number, _name: string) {
             this.x = _x
             this.y = _y
             this.z = _z
             this.size = _size
+            this.id = _id
+            this.name = _name
             this.setup()
         }
 
@@ -124,9 +135,17 @@ namespace OLED_3D {
     //% expandableArgumentMode=enabled
     //% weight=98
     export function addCube(x: number, y: number, z: number, size: number, name?: string): Cube {
-        const cube = new Cube(x, y, z, size)
+        if (name) { } else { name = maxId.toString() }
+        const cube = new Cube(x, y, z, size, maxId, name)
+        maxId += 1
         objects.push(cube)
         return cube
     }
+    //% block="move object with $identifier $value to x $x y $y z $z"
+    //% block.loc.cs="pohnout objektem s $identifier $value na x $x y $y z $z"
+    //% weight=97
+    export function moveObject(identifier: Identifiers, value: string | number, x: number, y: number, z: number): void {
+        if (identifier == Identifiers.Id) {
+        }
+    }
 }
-
