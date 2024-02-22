@@ -4,7 +4,7 @@
     "dependencies": {
         "core": "*",
         "microphone": "*",
-        "OLED": "github:pythom1234/pxt-oled#v1.0.2"
+        "OLED": "github:pythom1234/pxt-oled#v1.0.3"
     },
     "files": [
         "main.ts",
