@@ -40,9 +40,8 @@ namespace OLED_3D {
         public draw(): void {
             let lines = projectLines([[0,0,0],[1,1,1]])
             for (let i = 0; i < lines.length; i += 2) {
-                console.log("a")
+                console.log(lines)
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
-                console.log("b")
             }
         }
     }
