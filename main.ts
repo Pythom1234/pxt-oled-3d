@@ -30,12 +30,6 @@ namespace OLED_3D {
     let cameraPos = [0, 0, 0]
     let cameraRotation = [0, 90, 0]
     let maxId = 0
-    export enum Identifiers {
-        //% block="ID" block.loc.cs="ID"
-        Id,
-        //% block="name" block.loc.cs="jménem"
-        Name
-    }
     export class Cube {
         public x: number
         public y: number
@@ -141,9 +135,9 @@ namespace OLED_3D {
         objects.push(cube)
         return cube
     }
-    //% block="move object with ID $value to x $x y $y z $z"
-    //% block.loc.cs="pohnout objektem s ID $value na x $x y $y z $z"
-    //% inlineInputMode=enabled
+    //% block="move object with ID $value to|x $x|y $y|z $z"
+    //% block.loc.cs="pohnout objektem s ID $value na|x $x|y $y|z $z"
+    //% inlineInputMode=external
     //% weight=97
     export function moveObject(value: number, x: number, y: number, z: number): void {
     }
