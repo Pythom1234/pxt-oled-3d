@@ -49,41 +49,41 @@ namespace OLED_3D {
             const y = this.y
             const z = this.z
             this.vertices = [
-                [-s + x, -s + y, -s + z],
-                [s + x, -s + y, -s + z],
+                [-s + x, -s - y, -s + z],
+                [s + x, -s - y, -s + z],
 
-                [-s + x, -s + y, -s + z],
-                [-s + x, s + y, -s + z],
+                [-s + x, -s - y, -s + z],
+                [-s + x, s - y, -s + z],
 
-                [s + x, -s + y, -s + z],
-                [s + x, s + y, -s + z],
+                [s + x, -s - y, -s + z],
+                [s + x, s - y, -s + z],
 
-                [-s + x, s + y, -s + z],
-                [s + x, s + y, -s + z],
+                [-s + x, s - y, -s + z],
+                [s + x, s - y, -s + z],
 
-                [-s + x, -s + y, s + z],
-                [s + x, -s + y, s + z],
+                [-s + x, -s - y, s + z],
+                [s + x, -s - y, s + z],
 
-                [-s + x, -s + y, s + z],
-                [-s + x, s + y, s + z],
+                [-s + x, -s - y, s + z],
+                [-s + x, s - y, s + z],
 
-                [s + x, -s + y, s + z],
-                [s + x, s + y, s + z],
+                [s + x, -s - y, s + z],
+                [s + x, s - y, s + z],
 
-                [-s + x, s + y, s + z],
-                [s + x, s + y, s + z],
+                [-s + x, s - y, s + z],
+                [s + x, s - y, s + z],
 
-                [-s + x, -s + y, -s + z],
-                [-s + x, -s + y, s + z],
+                [-s + x, -s - y, -s + z],
+                [-s + x, -s - y, s + z],
 
-                [-s + x, s + y, -s + z],
-                [-s + x, s + y, s + z],
+                [-s + x, s - y, -s + z],
+                [-s + x, s - y, s + z],
 
-                [s + x, -s + y, -s + z],
-                [s + x, -s + y, s + z],
+                [s + x, -s - y, -s + z],
+                [s + x, -s - y, s + z],
 
-                [s + x, s + y, -s + z],
-                [s + x, s + y, s + z],
+                [s + x, s - y, -s + z],
+                [s + x, s - y, s + z],
 
             ]
         }
