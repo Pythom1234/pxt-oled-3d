@@ -18,9 +18,9 @@ function projectLines(vertices: number[][]): number[][] {
     for (let point of vertices) {
         let point2d = projectPoint(point[0], point[1], point[2], 0)
         result.push([
-            Math.round(point2d[0]+64),
-            Math.round(point2d[1]+32)
-            ])
+            Math.round(point2d[0] + 64),
+            Math.round(point2d[1] + 32)
+        ])
     }
     return result
 }
@@ -34,15 +34,42 @@ namespace OLED_3D {
         public y: number
         public z: number
         public size: number
+        public vertices: number[][]
         constructor(_x: number, _y: number, _z: number, _size: number) {
             this.x = _x
             this.y = _y
             this.z = _z
             this.size = _size
+            this.vertices = [
+                [-1, -1, -1],
+                [1, -1, -1],
+
+                [-1, -1, -1],
+                [-1, 1, -1],
+
+                [1, -1, -1],
+                [1, 1, -1],
+
+                [-1, 1, -1],
+                [1, 1, -1],
+
+                [-1, -1, 1],
+                [1, -1, 1],
+
+                [-1, -1, 1],
+                [-1, 1, 1],
+
+                [1, -1, 1],
+                [1, 1, 1],
+
+                [-1, 1, 1],
+                [1, 1, 1],
+
+            ]
         }
 
         public draw(): void {
-            let lines = projectLines([[-1, -1, 0], [1, 1, 0]])
+            let lines = projectLines(this.vertices)
             console.log(lines[0])
             console.log(lines[1])
             console.log(lines.length)
