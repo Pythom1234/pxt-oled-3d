@@ -53,11 +53,11 @@ namespace OLED_3D {
             this.setup()
         }
         set y(value: number) {
-            this._x = value
+            this._y = value
             this.setup()
         }
         set z(value: number) {
-            this._x = value
+            this._z = value
             this.setup()
         }
         get x(): number {
