@@ -126,14 +126,12 @@ namespace OLED_3D {
         }
     }
     //% block="initalize OLED display"
-    //% block.loc.cs="inicializovat OLED display"
     //% weight=100
     export function init(): void {
         OLED.init()
         OLED.clear(false)
     }
     //% block="draw"
-    //% block.loc.cs="vykreslit"
     //% weight=99
     export function draw(): void {
         for (let obj of objects) {
@@ -142,7 +140,6 @@ namespace OLED_3D {
         OLED.draw()
     }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
-    //% block.loc.cs="krychle|x $x|y $y|z $z|velikost $size||jméno $name"
     //% x.defl=0
     //% y.delf=0
     //% z.delf=0
@@ -151,7 +148,6 @@ namespace OLED_3D {
     //% expandableArgumentMode=enabled
     //% weight=100
     //% subcategory="objects"
-    //% subcategory.loc.cs="objekty"
     export function cube(x: number, y: number, z: number, size: number, name?: string): Cube {
         if (name) { } else { name = "OBJECT" }
         const cube = new Cube(x, y, z, size, maxId, name)
@@ -160,22 +156,18 @@ namespace OLED_3D {
         return cube
     }
     //% block="move object with ID $value to|x $x|y $y|z $z"
-    //% block.loc.cs="pohnout objektem s ID $value na|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=100
     //% subcategory="transform"
-    //% subcategory.loc.cs="transformace"
     export function moveObjectID(value: number, x: number, y: number, z: number): void {
         objects[value].x = x
         objects[value].y = y
         objects[value].z = z
     }
     //% block="move object with name $value to|x $x|y $y|z $z"
-    //% block.loc.cs="pohnout objektem se jménem $value na|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=99
     //% subcategory="transform"
-    //% subcategory.loc.cs="transformace"
     export function moveObjectName(value: string, x: number, y: number, z: number): void {
         for (let i of objects) {
             if (i.name == value) {
