@@ -123,9 +123,11 @@ namespace OLED_3D {
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
             if (res[0] == Infinity) {
                 res[0] = 1000
+                console.log(res[0])
             }
             if (res[1] == Infinity) {
                 res[1] = 1000
+                console.log(res[1])
             }
             result.push(res)
         }
