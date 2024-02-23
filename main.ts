@@ -146,9 +146,9 @@ namespace OLED_3D {
     }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
     //% x.defl=0
-    //% y.delf=0
-    //% z.delf=0
-    //% size.delf=1
+    //% y.defl=0
+    //% z.defl=0
+    //% size.defl=1
     //% inlineInputMode=external
     //% expandableArgumentMode=enabled
     //% weight=100
