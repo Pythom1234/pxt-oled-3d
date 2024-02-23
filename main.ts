@@ -182,4 +182,26 @@ namespace OLED_3D {
             }
         }
     }
+    //% block="move object with ID $value by|x $x|y $y|z $z"
+    //% inlineInputMode=external
+    //% weight=98
+    //% subcategory="transform"
+    export function moveObjectIDBy(value: number, x: number, y: number, z: number): void {
+        objects[value].x += x
+        objects[value].y -= y
+        objects[value].z += z
+    }
+    //% block="move object with name $value by|x $x|y $y|z $z"
+    //% inlineInputMode=external
+    //% weight=97
+    //% subcategory="transform"
+    export function moveObjectNameBy(value: string, x: number, y: number, z: number): void {
+        for (let i of objects) {
+            if (i.name == value) {
+                i.x += x
+                i.y -= y
+                i.z += z
+            }
+        }
+    }
 }
