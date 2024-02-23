@@ -124,6 +124,7 @@ namespace OLED_3D {
                 Math.round(point2d[0] + 64),
                 Math.round(point2d[1] + 32)
             ])
+            console.log(result)
         }
         return result
     }
