@@ -164,6 +164,7 @@ namespace OLED_3D {
     //% inlineInputMode=external
     //% weight=100
     //% subcategory="transform"
+    //% group="moving"
     export function moveObjectID(value: number, x: number, y: number, z: number): void {
         objects[value].x = x
         objects[value].y = y
@@ -173,6 +174,7 @@ namespace OLED_3D {
     //% inlineInputMode=external
     //% weight=99
     //% subcategory="transform"
+    //% group="moving"
     export function moveObjectName(value: string, x: number, y: number, z: number): void {
         for (let i of objects) {
             if (i.name == value) {
@@ -186,6 +188,7 @@ namespace OLED_3D {
     //% inlineInputMode=external
     //% weight=98
     //% subcategory="transform"
+    //% group="moving"
     export function moveObjectIDBy(value: number, x: number, y: number, z: number): void {
         objects[value].x += x
         objects[value].y -= y
@@ -195,6 +198,7 @@ namespace OLED_3D {
     //% inlineInputMode=external
     //% weight=97
     //% subcategory="transform"
+    //% group="moving"
     export function moveObjectNameBy(value: string, x: number, y: number, z: number): void {
         for (let i of objects) {
             if (i.name == value) {
