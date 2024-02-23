@@ -120,11 +120,14 @@ namespace OLED_3D {
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
                 rotateZ)
-            result.push([
-                Math.round(point2d[0] + 64),
-                Math.round(point2d[1] + 32)
-            ])
-            console.log(Math.round(point2d[0] + 64))
+            let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
+            if (res[0] == Infinity) {
+                res[0] = 1000
+            }
+            if (res[1] == Infinity) {
+                res[1] = 1000
+            }
+            result.push(res)
         }
         return result
     }
@@ -151,8 +154,8 @@ namespace OLED_3D {
     //% block="move camera to x $x y $y z $z"
     //% weight=97
     //% inlineInputMode=inline
-    export function moveCamera(x: number,y: number,z: number): void {
-        cameraPos = [x,y,z]
+    export function moveCamera(x: number, y: number, z: number): void {
+        cameraPos = [x, y, z]
     }
     //% block="move camera by x $x y $y z $z"
     //% weight=96
