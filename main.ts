@@ -119,9 +119,9 @@ namespace OLED_3D {
         let result: number[][] = []
         for (let point of vertices) {
             let point2d = projectPoint(
-                point[0] + cameraPos[0],
+                point[0] - cameraPos[0],
                 point[1] + cameraPos[1],
-                point[2] + cameraPos[2],
+                point[2] - cameraPos[2],
                 rotateZ)
             result.push([
                 Math.round(point2d[0] + 64),
