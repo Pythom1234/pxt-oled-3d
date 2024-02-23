@@ -1,34 +1,9 @@
-function projectLines(vertices: number[][]): number[][] {
-    function rotatePoint(x: number, y: number, angle: number): number[] {
-        const cos_theta = Math.cos(angle)
-        const sin_theta = Math.sin(angle)
-        const x_rotated = cos_theta * x - sin_theta * y
-        const y_rotated = sin_theta * x + cos_theta * y
-        return [x_rotated, y_rotated]
-    }
-    function projectPoint(x: number, y: number, z: number, angle: number): number[] {
-        const rotated_point = rotatePoint(x, y, angle)
-        const f = 5
-        const scale = 60
-        const x_proj = (rotated_point[0] / (z + f)) * scale
-        const y_proj = (rotated_point[1] / (z + f)) * scale
-        return [x_proj, y_proj]
-    }
-    let result: number[][] = []
-    for (let point of vertices) {
-        let point2d = projectPoint(point[0], point[1], point[2], 50)
-        result.push([
-            Math.round(point2d[0] + 64),
-            Math.round(point2d[1] + 32)
-        ])
-    }
-    return result
-}
+
 //% block="OLED 3D" icon="\uf1b2" color=#0065ff
 namespace OLED_3D {
     let objects: Cube[] = []
-    let cameraPos = [0, 0, 0]
-    let cameraRotation = [0, 90, 0]
+    export let cameraPos = [0, 0, 0]
+    export let cameraRotation = [0, 0, 0]
     let maxId = 0
     export class Cube {
         public _x: number
@@ -115,8 +90,8 @@ namespace OLED_3D {
             ]
         }
 
-        public draw(): void {
-            let lines = projectLines(this.vertices)
+        public draw(rotateZ: number): void {
+            let lines = projectLines(this.vertices, rotateZ)
             console.log(lines[0])
             console.log(lines[1])
             console.log(lines.length)
@@ -125,6 +100,37 @@ namespace OLED_3D {
             }
         }
     }
+    function projectLines(vertices: number[][], rotateZ: number): number[][] {
+        function rotatePoint(x: number, y: number, angle: number): number[] {
+            const cos_theta = Math.cos(angle)
+            const sin_theta = Math.sin(angle)
+            const x_rotated = cos_theta * x - sin_theta * y
+            const y_rotated = sin_theta * x + cos_theta * y
+            return [x_rotated, y_rotated]
+        }
+        function projectPoint(x: number, y: number, z: number, angle: number): number[] {
+            const rotated_point = rotatePoint(x, y, angle)
+            const f = 5
+            const scale = 60
+            const x_proj = (rotated_point[0] / (z + f)) * scale
+            const y_proj = (rotated_point[1] / (z + f)) * scale
+            return [x_proj, y_proj]
+        }
+        let result: number[][] = []
+        for (let point of vertices) {
+            let point2d = projectPoint(
+                point[0] + cameraPos[0],
+                point[1] + cameraPos[1],
+                point[2] + cameraPos[2],
+                rotateZ)
+            result.push([
+                Math.round(point2d[0] + 64),
+                Math.round(point2d[1] + 32)
+            ])
+        }
+        return result
+    }
+
     //% block="initalize OLED display"
     //% weight=100
     export function init(): void {
@@ -135,7 +141,7 @@ namespace OLED_3D {
     //% weight=99
     export function draw(): void {
         for (let obj of objects) {
-            obj.draw()
+            obj.draw(cameraRotation[2])
         }
         OLED.draw()
     }
