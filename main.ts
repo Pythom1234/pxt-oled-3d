@@ -24,7 +24,7 @@ function projectLines(vertices: number[][]): number[][] {
     }
     return result
 }
-//% block="OLED 3D" icon="\uf1b2" color=#0050ff
+//% block="OLED 3D" icon="\uf1b2" color=#00a0ff
 namespace OLED_3D {
     let objects: Cube[] = []
     let cameraPos = [0, 0, 0]
