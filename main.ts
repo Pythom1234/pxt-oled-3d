@@ -161,7 +161,7 @@ namespace OLED_3D {
     //% inlineInputMode=inline
     export function moveCameraBy(x: number, y: number, z: number): void {
         cameraPos[0] += x
-        cameraPos[1] -= y
+        cameraPos[1] += y
         cameraPos[2] += z
     }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
@@ -208,7 +208,7 @@ namespace OLED_3D {
     //% subcategory="moving"
     export function moveObjectIDBy(value: number, x: number, y: number, z: number): void {
         objects[value].x += x
-        objects[value].y -= y
+        objects[value].y += y
         objects[value].z += z
     }
     //% block="move object with name $value by|x $x|y $y|z $z"
@@ -219,7 +219,7 @@ namespace OLED_3D {
         for (let i of objects) {
             if (i.name == value) {
                 i.x += x
-                i.y -= y
+                i.y += y
                 i.z += z
             }
         }
