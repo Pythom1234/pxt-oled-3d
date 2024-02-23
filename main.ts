@@ -139,6 +139,11 @@ namespace OLED_3D {
         }
         OLED.draw()
     }
+    //% block="clear"
+    //% weight=98
+    export function clear(): void {
+        OLED.clear(false)
+    }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
     //% x.defl=0
     //% y.delf=0
