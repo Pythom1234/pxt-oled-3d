@@ -109,8 +109,8 @@ namespace OLED_3D {
             const rotated_point = rotatePoint(x, y, angle)
             const f = 0
             const scale = 60
-            const x_proj = (rotated_point[0] / (z + f)) * scale
-            const y_proj = (rotated_point[1] / (z + f)) * scale
+            const x_proj = (((rotated_point[0] / (z + f)) * scale) === Infinity) ? 100000000000 : (rotated_point[1] / (z + f)) * scale;
+            const y_proj = (((rotated_point[1] / (z + f)) * scale) === Infinity) ? 100000000000 : (rotated_point[1] / (z + f)) * scale;
             return [x_proj, y_proj]
         }
         let result: number[][] = []
@@ -121,14 +121,6 @@ namespace OLED_3D {
                 point[2] - cameraPos[2],
                 rotateZ)
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
-            if (res[0] == Infinity) {
-                res[0] = 1000
-                console.log(res[0])
-            }
-            if (res[1] == Infinity) {
-                res[1] = 1000
-                console.log(res[1])
-            }
             result.push(res)
         }
         return result
