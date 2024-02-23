@@ -92,9 +92,6 @@ namespace OLED_3D {
 
         public draw(rotateZ: number): void {
             let lines = projectLines(this.vertices, rotateZ)
-            console.log(lines[0])
-            console.log(lines[1])
-            console.log(lines.length)
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
