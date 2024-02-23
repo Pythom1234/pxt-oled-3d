@@ -150,6 +150,20 @@ namespace OLED_3D {
     export function clear(): void {
         OLED.clear(false)
     }
+    //% block="move camera to x $x y $y z $z"
+    //% weight=97
+    //% inlineInputMode=inline
+    export function moveCamera(x: number,y: number,z: number): void {
+        cameraPos = [x,y,z]
+    }
+    //% block="move camera by x $x y $y z $z"
+    //% weight=96
+    //% inlineInputMode=inline
+    export function moveCameraBy(x: number, y: number, z: number): void {
+        cameraPos[0] += x
+        cameraPos[1] -= y
+        cameraPos[2] += z
+    }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
     //% x.defl=0
     //% y.defl=0
@@ -169,7 +183,7 @@ namespace OLED_3D {
     //% block="move object with ID $value to|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=100
-    //% subcategory="transform"
+    //% subcategory="moving"
     export function moveObjectID(value: number, x: number, y: number, z: number): void {
         objects[value].x = x
         objects[value].y = y
@@ -178,7 +192,7 @@ namespace OLED_3D {
     //% block="move object with name $value to|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=99
-    //% subcategory="transform"
+    //% subcategory="moving"
     export function moveObjectName(value: string, x: number, y: number, z: number): void {
         for (let i of objects) {
             if (i.name == value) {
@@ -191,7 +205,7 @@ namespace OLED_3D {
     //% block="move object with ID $value by|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=98
-    //% subcategory="transform"
+    //% subcategory="moving"
     export function moveObjectIDBy(value: number, x: number, y: number, z: number): void {
         objects[value].x += x
         objects[value].y -= y
@@ -200,7 +214,7 @@ namespace OLED_3D {
     //% block="move object with name $value by|x $x|y $y|z $z"
     //% inlineInputMode=external
     //% weight=97
-    //% subcategory="transform"
+    //% subcategory="moving"
     export function moveObjectNameBy(value: string, x: number, y: number, z: number): void {
         for (let i of objects) {
             if (i.name == value) {
