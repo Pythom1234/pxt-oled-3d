@@ -16,7 +16,7 @@ function projectLines(vertices: number[][]): number[][] {
     }
     let result: number[][] = []
     for (let point of vertices) {
-        let point2d = projectPoint(point[0], point[1], point[2], 0)
+        let point2d = projectPoint(point[0], point[1], point[2], 50)
         result.push([
             Math.round(point2d[0] + 64),
             Math.round(point2d[1] + 32)
