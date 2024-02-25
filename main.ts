@@ -93,7 +93,7 @@ namespace OLED_3D {
         public draw(): void {
             let lines = projectLines(this.vertices)
             for (let i = 0; i < lines.length; i += 2) {
-                console.log(lines[i][0].toString() + lines[i][1].toString())
+                //console.log(lines[i][0].toString() + lines[i][1].toString())
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
         }
@@ -124,7 +124,8 @@ namespace OLED_3D {
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
                 0)
-            if (!(point2d[0] == NaN)) {
+            console.log(point2d[0])
+            if (!(point2d[0] === NaN)) {
                 let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
                 result.push(res)
             }
