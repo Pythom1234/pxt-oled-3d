@@ -93,11 +93,7 @@ namespace OLED_3D {
         public draw(): void {
             let lines = projectLines(this.vertices)
             for (let i = 0; i < lines.length; i += 2) {
-                try {
-                    OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
-                } catch (error) {
-                    console.log(error)
-                }
+                OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
         }
     }
@@ -143,7 +139,11 @@ namespace OLED_3D {
     //% weight=99
     export function draw(): void {
         for (let obj of objects) {
-            obj.draw()
+            try {
+                obj.draw()
+            } catch (error) {
+                console.log(error)
+            }
         }
         OLED.draw()
     }
