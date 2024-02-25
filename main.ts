@@ -128,7 +128,7 @@ namespace OLED_3D {
                 noLine = false
                 continue
             }
-            if (point2d[0] == NaN && point2d[1] == NaN) {
+            if (point2d[0] === NaN && point2d[1] === NaN) {
                 noLine = true
                 console.log(noLine)
                 continue
