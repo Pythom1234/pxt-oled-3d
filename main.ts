@@ -117,13 +117,19 @@ namespace OLED_3D {
             return [x_proj, y_proj]
         }
         let result: number[][] = []
+        let noLine = false
         for (let point of vertices) {
             let point2d = projectPoint(
                 point[0] - cameraPos[0],
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
                 0)
+            if (noLine == true) {
+                noLine = false
+                continue
+            }
             if (point2d[0] == NaN && point2d[1] == NaN) {
+                noLine = true
                 continue
             }
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
