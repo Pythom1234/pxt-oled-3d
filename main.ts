@@ -128,7 +128,6 @@ namespace OLED_3D {
                 point[2] - cameraPos[2],
                 0)
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
-            console.log(Math.round(point2d[0] + 64))
             result.push(res)
         }
         return result
