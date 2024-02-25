@@ -111,7 +111,7 @@ namespace OLED_3D {
             let x_proj = NaN
             let y_proj = NaN
             x_proj = (rotated_point[0] / z) * scale;
-            x_proj = (rotated_point[1] / z) * scale;
+            y_proj = (rotated_point[1] / z) * scale;
             return [x_proj, y_proj]
         }
         let result: number[][] = []
