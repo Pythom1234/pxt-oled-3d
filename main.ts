@@ -130,6 +130,7 @@ namespace OLED_3D {
             }
             if (point2d[0] == NaN && point2d[1] == NaN) {
                 noLine = true
+                console.log(noLine)
                 continue
             }
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
