@@ -108,8 +108,8 @@ namespace OLED_3D {
         function projectPoint(x: number, y: number, z: number, angle: number): number[] {
             const rotated_point = rotatePoint(x, y, angle)
             const scale = 60
-            let x_proj = 500
-            let y_proj = 500
+            let x_proj = NaN
+            let y_proj = NaN
             if (!(z == 0)) {
                 x_proj = (rotated_point[0] / z) * scale;
                 y_proj = (rotated_point[1] / z) * scale;
@@ -123,6 +123,9 @@ namespace OLED_3D {
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
                 0)
+            if (point2d[0] == NaN && point2d[1] == NaN) {
+                continue
+            }
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
             result.push(res)
         }
