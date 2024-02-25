@@ -124,7 +124,7 @@ namespace OLED_3D {
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
                 0)
-            if (!(point2d[0] === NaN)) {
+            if (!isNaN(point2d[0])) {
                 console.log(point2d[0])
                 let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
                 result.push(res)
