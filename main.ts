@@ -93,7 +93,6 @@ namespace OLED_3D {
         public draw(): void {
             let lines = projectLines(this.vertices)
             for (let i = 0; i < lines.length; i += 2) {
-                //console.log(lines[i][0].toString() + lines[i][1].toString())
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
         }
@@ -111,11 +110,16 @@ namespace OLED_3D {
             const scale = 60
             let x_proj = NaN
             let y_proj = NaN
-            if ((z == 0)) {
-                z = 0.0001
+            if (((rotated_point[0] / z) * scale) === Infinity) {
+                x_proj = (rotated_point[0] / z + 1) * scale;
+            } else {
+                x_proj = (rotated_point[0] / z) * scale;
             }
-            x_proj = (rotated_point[0] / z) * scale;
-            y_proj = (rotated_point[1] / z) * scale;
+            if (((rotated_point[1] / z) * scale) === Infinity) {
+                x_proj = (rotated_point[1] / z + 1) * scale;
+            } else {
+                x_proj = (rotated_point[1] / z) * scale;
+            }
             return [x_proj, y_proj]
         }
         let result: number[][] = []
