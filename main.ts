@@ -138,13 +138,13 @@ namespace OLED_3D {
     //% block="draw"
     //% weight=99
     export function draw(): void {
-        for (let obj of objects) {
-            obj.draw()
-        }
         try {
+            for (let obj of objects) {
+                obj.draw()
+            }
             OLED.draw()
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            console.log(err)
         }
     }
     //% block="clear"
