@@ -90,14 +90,18 @@ namespace OLED_3D {
             ]
         }
 
-        public draw(rotateZ: number): void {
-            let lines = projectLines(this.vertices, rotateZ)
+        public draw(): void {
+            let lines = projectLines(this.vertices)
             for (let i = 0; i < lines.length; i += 2) {
-                OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
+                try {
+                    OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
     }
-    function projectLines(vertices: number[][], rotateZ: number): number[][] {
+    function projectLines(vertices: number[][]): number[][] {
         function rotatePoint(x: number, y: number, angle: number): number[] {
             const cos_theta = Math.cos(angle)
             const sin_theta = Math.sin(angle)
@@ -122,7 +126,7 @@ namespace OLED_3D {
                 point[0] - cameraPos[0],
                 point[1] + cameraPos[1],
                 point[2] - cameraPos[2],
-                rotateZ)
+                0)
             let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
             console.log(Math.round(point2d[0] + 64))
             result.push(res)
@@ -140,7 +144,7 @@ namespace OLED_3D {
     //% weight=99
     export function draw(): void {
         for (let obj of objects) {
-            obj.draw(cameraRotation[2])
+            obj.draw()
         }
         OLED.draw()
     }
