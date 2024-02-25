@@ -110,8 +110,8 @@ namespace OLED_3D {
             const scale = 60
             let x_proj = NaN
             let y_proj = NaN
+            console.log((rotated_point[0] / z) * scale)
             if (((rotated_point[0] / z) * scale) === Infinity) {
-                console.log("infinity")
                 x_proj = (rotated_point[0] / z + 1) * scale;
             } else {
                 x_proj = (rotated_point[0] / z) * scale;
