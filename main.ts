@@ -107,10 +107,13 @@ namespace OLED_3D {
         }
         function projectPoint(x: number, y: number, z: number, angle: number): number[] {
             const rotated_point = rotatePoint(x, y, angle)
-            const f = 0.00001
             const scale = 60
-            const x_proj = (rotated_point[0] / (z + f)) * scale;
-            const y_proj = (rotated_point[1] / (z + f)) * scale;
+            let x_proj = 1000000
+            let y_proj = 1000000
+            if (!(z == 0)) {
+                x_proj = (rotated_point[0] / z) * scale;
+                y_proj = (rotated_point[1] / z) * scale;
+            }
             return [x_proj, y_proj]
         }
         let result: number[][] = []
