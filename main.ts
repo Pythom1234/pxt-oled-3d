@@ -122,8 +122,8 @@ namespace OLED_3D {
             const scaleFactor = distance / (distance + rotatedPoint[2]);
 
             const projectedPoint = [
-                rotatedPoint[0] * scaleFactor,
-                rotatedPoint[1] * scaleFactor
+                Math.round(rotatedPoint[0] * scaleFactor),
+                Math.round(rotatedPoint[1] * scaleFactor)
             ];
 
             result.push(projectedPoint);
