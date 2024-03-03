@@ -91,7 +91,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectPoints(this.vertices,[0,0,0],[0,0,0])
+            let lines = projectPoints(this.vertices,[0,0,0],[45,0,0])
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
@@ -111,7 +111,7 @@ namespace OLED_3D {
                 translatedPoint[0] * Math.sin(rotationInRadians[1]) + translatedPoint[2] * Math.cos(rotationInRadians[1])
             ]
 
-            const distance = 100
+            const distance = 10
             const scaleFactor = distance / (distance + rotatedPoint[2])
             const scale = 10
 
