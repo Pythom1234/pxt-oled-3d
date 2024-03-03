@@ -111,7 +111,7 @@ namespace OLED_3D {
                 translatedPoint[0] * Math.sin(rotationInRadians[1]) + translatedPoint[2] * Math.cos(rotationInRadians[1])
             ];
 
-            const distance = 0.001;
+            const distance = 1;
             const scaleFactor = distance / (distance + rotatedPoint[2]);
 
             const projectedPoint = [
