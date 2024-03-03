@@ -92,13 +92,6 @@ namespace OLED_3D {
 
         public draw(): void {
             let lines = projectPoints(this.vertices,[0,0,0],[0,0,0])
-            console.log(lines[0])
-            console.log(lines[1])
-            console.log(lines[2])
-            console.log(lines[3])
-            console.log(lines[4])
-            console.log(lines[5])
-            console.log(lines[6])
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
@@ -118,12 +111,12 @@ namespace OLED_3D {
                 translatedPoint[0] * Math.sin(rotationInRadians[1]) + translatedPoint[2] * Math.cos(rotationInRadians[1])
             ];
 
-            const distance = 1000;
+            const distance = 10;
             const scaleFactor = distance / (distance + rotatedPoint[2]);
 
             const projectedPoint = [
-                Math.round(rotatedPoint[0] * scaleFactor),
-                Math.round(rotatedPoint[1] * scaleFactor)
+                Math.round(rotatedPoint[0] * scaleFactor)+64,
+                Math.round(rotatedPoint[1] * scaleFactor)+32
             ];
 
             result.push(projectedPoint);
