@@ -91,7 +91,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectPoints(this.vertices,[0,0,0],[45,0,0])
+            let lines = projectPoints(this.vertices,[0,0,0],[45,45,0])
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
