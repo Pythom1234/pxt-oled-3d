@@ -91,7 +91,7 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectPoints(this.vertices,[0,0,0],[45,45,0])
+            let lines = projectPoints(this.vertices,cameraPos,cameraRotation)
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
@@ -124,37 +124,6 @@ namespace OLED_3D {
         }
         return result
     }
-    /*
-    function projectLines(vertices: number[][]): number[][] {
-        function rotatePoint(x: number, y: number, angle: number): number[] {
-            const cos_theta = Math.cos(angle)
-            const sin_theta = Math.sin(angle)
-            const x_rotated = cos_theta * x - sin_theta * y
-            const y_rotated = sin_theta * x + cos_theta * y
-            return [x_rotated, y_rotated]
-        }
-        function projectPoint(x: number, y: number, z: number, angle: number): number[] {
-            const rotated_point = rotatePoint(x, y, angle)
-            const scale = 60
-            let x_proj = NaN
-            let y_proj = NaN
-            x_proj = (rotated_point[0] / z) * scale;
-            y_proj = (rotated_point[1] / z) * scale;
-            return [x_proj, y_proj]
-        }
-        let result: number[][] = []
-        for (let point of vertices) {
-            let point2d = projectPoint(
-                point[0] - cameraPos[0],
-                point[1] + cameraPos[1],
-                point[2] - cameraPos[2],
-                0)
-            let res = [Math.round(point2d[0] + 64), Math.round(point2d[1] + 32)]
-            console.log(res[0].toString()+res[1].toString())
-            result.push(res)
-        }
-        return result
-    }*/
 
     //% block="initalize OLED display"
     //% weight=100
@@ -188,6 +157,20 @@ namespace OLED_3D {
         cameraPos[0] += x
         cameraPos[1] += y
         cameraPos[2] += z
+    }
+    //% block="rotate camera to x $x y $y z $z"
+    //% weight=95
+    //% inlineInputMode=inline
+    export function rotateCamera(x: number, y: number, z: number): void {
+        cameraRotation = [x, y, z]
+    }
+    //% block="rotate camera by x $x y $y z $z"
+    //% weight=94
+    //% inlineInputMode=inline
+    export function rotateCameraBy(x: number, y: number, z: number): void {
+        cameraRotation[0] += x
+        cameraRotation[1] += y
+        cameraRotation[2] += z
     }
     //% block="cube|x $x|y $y|z $z|size $size||name $name"
     //% x.defl=0
