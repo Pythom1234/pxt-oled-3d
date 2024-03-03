@@ -91,11 +91,38 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectLines(this.vertices)
+            let lines = projectPoints(this.vertices,[0,0,0],[0,0,0])
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
         }
+    }
+    function projectPoints(points: number[][], cameraPosition: number[], cameraRotation: number[]): number[][] {
+        const result: number[][] = [];
+
+        const rotationInRadians = cameraRotation.map(angle => (angle * Math.PI) / 180);
+
+        for (const point of points) {
+            const translatedPoint = point.map((coord, index) => coord - cameraPosition[index]);
+
+            const rotatedPoint = [
+                translatedPoint[0] * Math.cos(rotationInRadians[1]) - translatedPoint[2] * Math.sin(rotationInRadians[1]),
+                translatedPoint[1] * Math.cos(rotationInRadians[0]) + translatedPoint[2] * Math.sin(rotationInRadians[0]),
+                translatedPoint[0] * Math.sin(rotationInRadians[1]) + translatedPoint[2] * Math.cos(rotationInRadians[1])
+            ];
+
+            const distance = 1000;
+            const scaleFactor = distance / (distance + rotatedPoint[2]);
+
+            const projectedPoint = [
+                rotatedPoint[0] * scaleFactor,
+                rotatedPoint[1] * scaleFactor
+            ];
+
+            result.push(projectedPoint);
+        }
+
+        return result;
     }
     function projectLines(vertices: number[][]): number[][] {
         function rotatePoint(x: number, y: number, angle: number): number[] {
