@@ -102,22 +102,22 @@ namespace OLED_3D {
         const centerX = 64
         const centerY = 32
         let rotatedVertices = points.map(vertex => {
-            let x = vertex[0];
-            let y = vertex[1];
-            let z = vertex[2];
+            let x = vertex[0] + cameraPosition[0];
+            let y = vertex[1] + cameraPosition[1];
+            let z = vertex[2] + cameraPosition[2];
 
-            let cosX = Math.cos(cameraRotation[0]);
-            let sinX = Math.sin(cameraRotation[0]);
+            let cosX = Math.cos(cameraRotation[0] * (Math.PI / 180));
+            let sinX = Math.sin(cameraRotation[0] * (Math.PI / 180));
             let rotatedY = y * cosX - z * sinX;
             let rotatedZ = y * sinX + z * cosX;
 
-            let cosY = Math.cos(cameraRotation[1]);
-            let sinY = Math.sin(cameraRotation[1]);
+            let cosY = Math.cos(cameraRotation[1] * (Math.PI / 180));
+            let sinY = Math.sin(cameraRotation[1] * (Math.PI / 180));
             let rotatedX = x * cosY + rotatedZ * sinY;
             let rotatedZ2 = -x * sinY + rotatedZ * cosY;
 
-            let cosZ = Math.cos(cameraRotation[2]);
-            let sinZ = Math.sin(cameraRotation[2]);
+            let cosZ = Math.cos(cameraRotation[2] * (Math.PI / 180));
+            let sinZ = Math.sin(cameraRotation[2] * (Math.PI / 180));
             let rotatedX2 = rotatedX * cosZ - rotatedY * sinZ;
             let rotatedY2 = rotatedX * sinZ + rotatedY * cosZ;
 
