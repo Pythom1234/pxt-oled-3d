@@ -91,38 +91,46 @@ namespace OLED_3D {
         }
 
         public draw(): void {
-            let lines = projectPoints(this.vertices,cameraPos,cameraRotation)
+            let lines = projectPoints(this.vertices, cameraPos, cameraRotation)
             for (let i = 0; i < lines.length; i += 2) {
                 OLED.drawLine(lines[i][0], lines[i][1], lines[i + 1][0], lines[i + 1][1], true)
             }
         }
     }
     function projectPoints(points: number[][], cameraPosition: number[], cameraRotation: number[]): number[][] {
-        const result: number[][] = []
+        const size = 40
+        const centerX = 64
+        const centerY = 32
+        let rotatedVertices = points.map(vertex => {
+            let x = vertex[0];
+            let y = vertex[1];
+            let z = vertex[2];
 
-        const rotationInRadians = cameraRotation.map(angle => (angle * Math.PI) / 180)
+            let cosX = Math.cos(cameraRotation[0]);
+            let sinX = Math.sin(cameraRotation[0]);
+            let rotatedY = y * cosX - z * sinX;
+            let rotatedZ = y * sinX + z * cosX;
 
-        for (const point of points) {
-            const translatedPoint = point.map((coord, index) => coord - cameraPosition[index])
+            let cosY = Math.cos(cameraRotation[1]);
+            let sinY = Math.sin(cameraRotation[1]);
+            let rotatedX = x * cosY + rotatedZ * sinY;
+            let rotatedZ2 = -x * sinY + rotatedZ * cosY;
 
-            const rotatedPoint = [
-                translatedPoint[0] * Math.cos(rotationInRadians[1]) - translatedPoint[2] * Math.sin(rotationInRadians[1]),
-                translatedPoint[1] * Math.cos(rotationInRadians[0]) + translatedPoint[2] * Math.sin(rotationInRadians[0]),
-                translatedPoint[0] * Math.sin(rotationInRadians[1]) + translatedPoint[2] * Math.cos(rotationInRadians[1])
-            ]
+            let cosZ = Math.cos(cameraRotation[2]);
+            let sinZ = Math.sin(cameraRotation[2]);
+            let rotatedX2 = rotatedX * cosZ - rotatedY * sinZ;
+            let rotatedY2 = rotatedX * sinZ + rotatedY * cosZ;
 
-            const distance = 1000
-            const scaleFactor = distance / (distance + rotatedPoint[2])
-            const scale = 10
+            let scaleFactor = 200 / (200 + rotatedZ2);
+            let projectedX = rotatedX2 * scaleFactor;
+            let projectedY = rotatedY2 * scaleFactor;
 
-            const projectedPoint = [
-                Math.round(rotatedPoint[0] * scaleFactor * scale)+64,
-                Math.round(rotatedPoint[1] * scaleFactor * scale)+32
-            ];
+            let screenX = centerX + projectedX;
+            let screenY = centerY + projectedY;
 
-            result.push(projectedPoint)
-        }
-        return result
+            return [screenX,screenY];
+        })
+        return rotatedVertices
     }
 
     //% block="initalize OLED display"
