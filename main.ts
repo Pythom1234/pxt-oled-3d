@@ -125,7 +125,7 @@ namespace OLED_3D {
             let projectedX = rotatedX2 * scaleFactor;
             let projectedY = rotatedY2 * scaleFactor;
 
-            const scale = 3
+            const scale = 2
             let screenX = Math.round((centerX + projectedX)*scale);
             let screenY = Math.round((centerY + projectedY)*scale);
 
